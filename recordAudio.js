@@ -5,10 +5,6 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 // var audioRef = storageRef.child('myAudioFile.mp3');
 
-navigator.mediaDevices.getUserMedia({audio:true})
-.then(stream => {handlerFunction(stream)})
-
-
 var blob; 
 
 function handlerFunction(stream) {
@@ -20,14 +16,20 @@ function handlerFunction(stream) {
           recordedAudio.src = URL.createObjectURL(blob);
           recordedAudio.controls=true;
           recordedAudio.autoplay=true;
+          console.log(recordedAudio.src);
+
+          stream.getTracks().forEach(track => track.stop());
           sendData(blob)
+
       }
   }
 }
 
 function sendData(data) {}
 
-record.onclick = e => {
+record.onclick = async e => {
+    await navigator.mediaDevices.getUserMedia({audio:true}).then(stream => {handlerFunction(stream)});
+
     console.log('Recording audio...');
     record.disabled = true;
     record.style.backgroundColor = "blue";
@@ -52,18 +54,18 @@ storeRecord.onclick = e => {
     // 2. Error observer, called on failure
     // 3. Completion observer, called on successful completion
     uploadTask.on('state_changed', function(snapshot){
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
-    switch (snapshot.state) {
-        case firebase.storage.TaskState.PAUSED: // or 'paused'
-        console.log('Upload is paused');
-        break;
-        case firebase.storage.TaskState.RUNNING: // or 'running'
-        console.log('Upload is running');
-        break;
-    }
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+            console.log('Upload is paused');
+            break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+            console.log('Upload is running');
+            break;
+        }
     }, function(error) {
         // Handle unsuccessful uploads
     }, function() {
@@ -78,6 +80,15 @@ storeRecord.onclick = e => {
     //     console.log("uploaded blob");
     // });
 }
+
+getRecord.onclick = async e => {
+    loadedAudio.src = await storageRef.child('myaudiofile.mp3').getDownloadURL();
+    loadedAudio.controls = true;
+    loadedAudio.autoplay = false;
+}
+
+
+
 // $(".storeRecord").click(function() {
 //     console.log("storing");
 // });
