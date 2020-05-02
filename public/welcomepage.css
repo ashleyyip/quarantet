@@ -38,18 +38,18 @@ body {
 }
 
 p {
-  margin-bottom: 32px;
-  margin-top: 0;
-  box-sizing: inherit;
-  font-family: "Heebo", sans-serif;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.1px;
-  box-sizing: inherit;
+    margin-bottom: 32px;
+    margin-top: 0;
+    box-sizing: inherit;
+    font-family: "Heebo", sans-serif;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: -0.1px;
+    box-sizing: inherit;
 }
 
 h2 {
-  opacity: 1;
+    opacity: 1;
     transform: translate(0);
     margin-bottom: 16px;
     margin-top: 0;

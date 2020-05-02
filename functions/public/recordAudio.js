@@ -40,11 +40,11 @@ record.onclick = async e => {
 
 stopRecord.onclick = e => {
     stopMetronome();
-    
+
     console.log("Recording stopped...");
     record.disabled = false;
     stopRecord.disabled=true;
-    record.style.backgroundColor = "#1bb1dc";
+    record.style.backgroundColor = "#8E79FC";
     rec.stop();
 }
 
@@ -116,7 +116,7 @@ async function getAudioFiles() {
         var audioName = document.createElement("P");
         audioName.id = audioName + "Name";
         audioName.innerText = audioLabel;
-        document.body.appendChild(audioName);
+        document.getElementById('audioRecordings').appendChild(audioName);
 
         var myAudio = document.createElement("audio");
         myAudio.id = audioLabel;
@@ -124,7 +124,7 @@ async function getAudioFiles() {
         myAudio.src = await audioItems[i].getDownloadURL();
         myAudio.controls = true;
         myAudio.autoplay = false;
-        document.body.appendChild(myAudio);               
+        document.getElementById('audioRecordings').appendChild(myAudio);               
 
     }
 

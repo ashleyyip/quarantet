@@ -1,5 +1,15 @@
+.flex-container {
+    display: flex;
+    align-items: stretch;
+}
+
 .container {
-  padding-left: 30px;
+    padding-left: 30px;
+}
+
+#roomID {
+    padding-left: 10px;
+    font-weight: bold;
 }
 
 img {
@@ -12,13 +22,18 @@ img {
   padding-top: 30px;
 }
 
+.bpm-input, .ts-top {
+    width: 70px;
+    text-align: center;
+}
+
 input {
-  height: 50px;
+  height: 46px;
   width: 250px;
   padding: 5px 10px;
   font-size: 1.3em;
   border: 1px solid #ddd;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
 }
 
 /* .newRoom {
@@ -35,21 +50,23 @@ body {
   -webkit-font-smoothing: antialiased;
   color: #58678C;
   font-size: 1rem;
+  font-family: "Heebo", sans-serif;
+
 }
 
 p {
-  margin-bottom: 32px;
-  margin-top: 0;
-  box-sizing: inherit;
-  font-family: "Heebo", sans-serif;
-  font-weight: 400;
-  line-height: 30px;
-  letter-spacing: -0.1px;
-  box-sizing: inherit;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+    margin: 0px;
+}
+
+#partname {
+    line-height: 46px;
+    padding-right: 10px;
 }
 
 h2 {
-  opacity: 1;
+    opacity: 1;
     transform: translate(0);
     margin-bottom: 16px;
     margin-top: 0;
@@ -73,7 +90,6 @@ button {
   font-family: "IBM Plex Sans", sans-serif;
   color: #fff;
   background-color: #8E79FC;
-  display: inline-flex;
   font-size: 14px;
   line-height: 22px;
   font-weight: 600;
@@ -92,5 +108,6 @@ button {
   white-space: nowrap;
   transition: background .15s ease;
   box-sizing: inherit;
+
 }
 

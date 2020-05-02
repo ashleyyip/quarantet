@@ -1,13 +1,15 @@
 <head>
+    <link href='https://fonts.googleapis.com/css?family=IBM Plex Sans' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div class="container">
         <header> 
-            <h2>Metronome</h2>
+            <h2>Quarantet</h2>
         </header>
-        <div>
-            <p>Room ID: </p>
+        <div class="flex-container">
+            <p>Room ID:</p>
             <p id="roomID"><%= title %></p>
         </div>
        
@@ -42,18 +44,20 @@
         </div> -->
         </section>
 
-        <h2>Record</h2>
+        <h3>Record</h3>
         <p>
             <button id=record>Record</button>
             <button id=stopRecord disabled>Stop</button>
-        </p>
+        </p><br>
         <p>
             <audio id=recordedAudio></audio>
         </p>
+        <br>
 
-        <div>
-            <p>Part name:</p>
-            <input type="text" id="recordingName" name="recordingName"><br>
+
+        <div class="flex-container">
+            <p id="partname">Part name:</p>
+            <input type="text" id="recordingName" name="recordingName">
             <p>
                 <button id=storeRecord>Store Recording</button>
             </p>
@@ -62,17 +66,12 @@
         
         </div>
 
-        <div>
-            <h2>Current recordings:</h2> 
-            <p>
-                <button id=playRecord>Play Recordings</button>
-            </p>
-    
-            <ul>
-                <audio id=loadedAudio1></audio>
-                <audio id=loadedAudio2></audio>
-            </ul>
-        </div>
+        <div id="audioRecordings">
+            <h3>Current recordings:</h3> 
+        </div><br>
+        <p>
+            <button id=playRecord>Play Recordings</button>
+        </p>
 
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
