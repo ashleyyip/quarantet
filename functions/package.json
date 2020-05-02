@@ -12,6 +12,7 @@
     "node": "8"
   },
   "dependencies": {
+    "crunker": "^0.2.0",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "firebase-admin": "^8.10.0",

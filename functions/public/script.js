@@ -5,10 +5,12 @@ var timer, noteCount, counting, accentPitch = 380, offBeatPitch = 200;
 var delta = 0;
 var curTime = 0.0;
 
+
+
 // Load up dots on pageload
 $("document").ready(function() {
-$(".ts-top").trigger("change");
-$("header").fitText(1, { maxFontSize: "46px" });
+    $(".ts-top").trigger("change");
+    $("header").fitText(1, { maxFontSize: "46px" });
 });
 
 
@@ -79,10 +81,10 @@ function playNote(t) {
 
 /* Add or subtract bpm */
 $(".bpm-minus, .bpm-plus").click(function() {
-if($(this).hasClass("bpm-minus"))
-  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
-else
-  $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
+    if($(this).hasClass("bpm-minus"))
+        $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
+    else
+        $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
 });
 
 // /* Change pitches for tones in options */
@@ -95,7 +97,7 @@ else
 
 /* Activate dots for accents */
 $(document).on("click", ".counter .dot", function() {
-  $(this).toggleClass("active");
+    $(this).toggleClass("active");
 });
 
 $(".options-btn").click(function() {
@@ -104,19 +106,18 @@ $(".options-btn").click(function() {
 
 /* Add dots when time signature is changed */
 $(".ts-top, .ts-bottom").on("change", function() {
-  var _counter = $(".counter");
-  _counter.html("");
+    var _counter = $(".counter");
+    _counter.html("");
 
-  for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++)
-  {
-    var temp = document.createElement("div");
-    temp.className = "dot";
+    for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++) {
+        var temp = document.createElement("div");
+        temp.className = "dot";
 
-    if(i === 0)
-      temp.className += " active";
+        if(i === 0)
+        temp.className += " active";
 
-    _counter.append( temp );
-  }
+        _counter.append( temp );
+    }
 });
 
 
@@ -124,28 +125,30 @@ $(".ts-top, .ts-bottom").on("change", function() {
 $(".play-btn").click(function() {
     context.resume();
     if($(this).data("what") === "pause") {
-        // ====== Pause ====== //
-        counting = false;
-        window.clearInterval(timer);
-        $(".counter .dot").attr("style", "");
-        $(this).data("what", "play").attr("style","").text("Play");
+      stopMetronome();
+
     }
     else {
-    // ====== Play ====== //
-    
-    // if( $("#timer-check").is(":checked") )
-    // {
-    // counting = true;
-    // countDown();
-    // }
+      playMetronome()
+    }
+});
+
+function playMetronome() {
     
     curTime = context.currentTime;
     noteCount = parseInt($(".ts-top").val(), 10);
     schedule();
 
-    $(this).data("what", "pause").css({
+    $(".play-btn").data("what", "pause").css({
         background: "#F75454",
         color: "#FFF"
     }).text("Stop");
-    }
-});
+}
+
+function stopMetronome() {
+    counting = false;
+    window.clearInterval(timer);
+    $(".counter .dot").attr("style", "");
+    $(".play-btn").data("what", "play").attr("style","").text("Play");
+}
+

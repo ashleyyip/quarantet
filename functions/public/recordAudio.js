@@ -8,50 +8,56 @@ var roomRef = storageRef.child(document.getElementById('roomID').innerText);
 var blob; 
 
 function handlerFunction(stream) {
-  rec = new MediaRecorder(stream);
-  rec.ondataavailable = e => {
-      audioChunks.push(e.data);
-      if (rec.state == "inactive"){
-          blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
-          recordedAudio.src = URL.createObjectURL(blob);
-          recordedAudio.controls=true;
-          recordedAudio.autoplay=true;
-          console.log(recordedAudio.src);
+    rec = new MediaRecorder(stream);
+    rec.ondataavailable = e => {
+        audioChunks.push(e.data);
+        if (rec.state == "inactive") {
+            blob = new Blob(audioChunks,{type:'audio/mpeg-3'});
+            recordedAudio.src = URL.createObjectURL(blob);
+            recordedAudio.controls=true;
+            recordedAudio.autoplay=true;
+            console.log(recordedAudio.src);
 
-          stream.getTracks().forEach(track => track.stop());
-          sendData(blob)
-
-      }
-  }
+            stream.getTracks().forEach(track => track.stop());
+            sendData(blob);
+        }
+    }
 }
 
 function sendData(data) {}
 
 record.onclick = async e => {
+    playMetronome();
     await navigator.mediaDevices.getUserMedia({audio:true}).then(stream => {handlerFunction(stream)});
 
     console.log('Recording audio...');
     record.disabled = true;
-    record.style.backgroundColor = "blue";
+    record.style.backgroundColor = "red";
     stopRecord.disabled=false;
     audioChunks = [];
     rec.start();
 }
 
 stopRecord.onclick = e => {
+    stopMetronome();
+    
     console.log("Recording stopped...");
     record.disabled = false;
     stopRecord.disabled=true;
-    record.style.backgroundColor = "red";
+    record.style.backgroundColor = "#1bb1dc";
     rec.stop();
 }
 
 storeRecord.onclick = async e => {
 
+    // check for valid name and recording is there
+
     var audioName = recordingName.value + ".mp3";
     console.log("audio name: " + audioName);
 
-    var uploadTask = roomRef.child(audioName).put(blob);
+    audioRef = roomRef.child(audioName)
+
+    var uploadTask = audioRef.put(blob);
 
     var metadata = {
         customMetadata: {
@@ -60,11 +66,8 @@ storeRecord.onclick = async e => {
         }
     }
 
-    uploadTask.updateMetadata(metadata).then(function(metadata) {
-        // Updated metadata for 'images/forest.jpg' is returned in the Promise
-    }).catch(function(error) {
-
-    });
+    audioRef.updateMetadata(metadata)
+    .catch(function(error) {});
 
     uploadTask.on('state_changed', function(snapshot){
         // Observe state change events such as progress, pause, and resume
@@ -82,46 +85,47 @@ storeRecord.onclick = async e => {
     }, function(error) {
         // Handle unsuccessful uploads
     }, function() {
-  
         uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             console.log('File available at', downloadURL);
         });
+        document.getElementById('audioStoringAlert').style.visibility = "visible";
     });
+
+
+    
 }
 
-getRecord.onclick = async e => {
-    
-    var listRef = storageRef.child(document.getElementById('roomID').innerText);
-    var firstPage = await listRef.list({ maxResults: 100});
-    var audioItems = firstPage.items;
-
-
-    for (let i = 0; i < audioItems.length; i++) {
-        var myAudio = document.createElement("audio");
-        var audioLabel = audioItems[i].location.path.split('/').pop().split('.')[0];
-
-        myAudio.id = audioLabel;
-        myAudio.className = "audiofile";
-        myAudio.src = await audioItems[i].getDownloadURL();
-        myAudio.controls = true;
-        myAudio.autoplay = true;
-
-        document.body.appendChild(myAudio);               
-
-        var audioName = document.createElement("P");
-        audioName.id = audioName + "Name";
-        audioName.innerText = audioLabel;
-        document.body.appendChild(audioName);
-    }
-
+playRecord.onclick = e => {
     var audiofiles = document.getElementsByClassName("audiofile");
     for (let i = 0; i < audiofiles.length; i++) {
         audiofiles[i].play();
     }
 }
 
+window.onload = getAudioFiles();
+
+async function getAudioFiles() {
+    var listRef = storageRef.child(document.getElementById('roomID').innerText);
+    var firstPage = await listRef.list({ maxResults: 100});
+    var audioItems = firstPage.items;
 
 
-// $(".storeRecord").click(function() {
-//     console.log("storing");
-// });
+    for (let i = 0; i < audioItems.length; i++) {
+        var audioLabel = audioItems[i].location.path.split('/').pop().split('.')[0];
+
+        var audioName = document.createElement("P");
+        audioName.id = audioName + "Name";
+        audioName.innerText = audioLabel;
+        document.body.appendChild(audioName);
+
+        var myAudio = document.createElement("audio");
+        myAudio.id = audioLabel;
+        myAudio.className = "audiofile";
+        myAudio.src = await audioItems[i].getDownloadURL();
+        myAudio.controls = true;
+        myAudio.autoplay = false;
+        document.body.appendChild(myAudio);               
+
+    }
+
+}

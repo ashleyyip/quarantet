@@ -1,8 +1,17 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
     <div class="container">
         <header> 
-            Metronome
+            <h2>Metronome</h2>
         </header>
+        <div>
+            <p>Room ID: </p>
+            <p id="roomID"><%= title %></p>
+        </div>
+       
+        <br>
     
         <section class="metronome-container">
         <div class="counter"></div>
@@ -13,20 +22,18 @@
             <label>BPM: 
                 <span>
                     <i class="fa fa-minus bpm-minus"></i>
-                    <input type="text" value="60" id="bpm-input" />
+                    <input type="text" value="60" class="bpm-input" id="bpm-input" />
                     <i class="fa fa-plus bpm-plus"></i>
                 </span>
             </label>
             <label>
-                Beat: <input type="text" value="4" id="beat-input" />
+                Beat: <input type="text" value="4" class="ts-top" id="beat-input" />
             </label>
     
             <button class="play-btn">Play</button>
         </div>
 
-        <div id="roomID">
-            <%= title %>
-        </div>
+
         
         <!-- <div class="options">
             <i class="fa fa-caret-down up"></i>
@@ -45,16 +52,20 @@
         </p>
 
         <div>
+            <p>Part name:</p>
             <input type="text" id="recordingName" name="recordingName"><br>
             <p>
                 <button id=storeRecord>Store Recording</button>
             </p>
+            <p id="audioStoringAlert" style="visibility:hidden;">Upload Complete!</p>
+
         
         </div>
 
         <div>
+            <h2>Current recordings:</h2> 
             <p>
-                <button id=getRecord>Get Recording</button>
+                <button id=playRecord>Play Recordings</button>
             </p>
     
             <ul>
