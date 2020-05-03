@@ -6,20 +6,25 @@
 <body>
 
     <h1>
-        <img src="https://preview.cruip.com/abstract/images/logo.svg" width="32" height="32">
+        <img id="logo" src="https://preview.cruip.com/abstract/images/logo.svg" width="32" height="32" 
+        onclick="{window.location.href = '/' + document.getElementById('recordingName').value}">
     </h1>
+
 <div class="container">
     <h2>Welcome to Quarantet</h2>
   
 
     <div>
         <p>Enter a room name: </p>
-        <input type="text" id="recordingName" name="recordingName"><br>
-        <button
-            class="newRoom"
-            onclick="{window.location.href = '/' + document.getElementById('recordingName').value}">
-            Go!
-        </button>
+        <div class="flex-container">
+            <input type="text" id="roomName" name="roomName" value=""><br>
+            <button
+                class="newRoom"
+                onclick="{window.location.href = '/' + document.getElementById('roomName').value}">
+                Go!
+            </button>
+        </div>
+
      
     </div>
 
@@ -48,6 +53,7 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     </script>
+    <script src="roomNames.js"></script>
 
 </body>
   

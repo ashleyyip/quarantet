@@ -4,6 +4,7 @@ var context = new AudioContext();
 var timer, noteCount, counting, accentPitch = 380, offBeatPitch = 200;
 var delta = 0;
 var curTime = 0.0;
+var countdown = 3;
 
 
 
@@ -34,14 +35,25 @@ function updateTime() {
 function playNote(t) {
     var note = context.createOscillator();
 
-    if(noteCount == parseInt($(".ts-top").val(), 10) )
-      noteCount = 0;
+    if(noteCount == parseInt($(".ts-top").val(), 10) ) {
+        noteCount = 0;
+    }
+      
 
-    if( $(".counter .dot").eq(noteCount).hasClass("active") )
-      note.frequency.value = accentPitch;
-    else
-      note.frequency.value = offBeatPitch;
-
+    if( $(".counter .dot").eq(noteCount).hasClass("active") ) {
+        note.frequency.value = accentPitch;
+        if (countdown == 0) {
+            $("#countdownAlert").text("Begin!");
+        }
+        else {
+            $("#countdownAlert").text(countdown);
+            countdown--;
+        }
+        
+    }
+    else {
+        note.frequency.value = offBeatPitch;
+    }
     note.connect(context.destination);
 
     note.start(t);
@@ -134,7 +146,7 @@ $(".play-btn").click(function() {
 });
 
 function playMetronome() {
-    
+    countdown = 3;
     curTime = context.currentTime;
     noteCount = parseInt($(".ts-top").val(), 10);
     schedule();
