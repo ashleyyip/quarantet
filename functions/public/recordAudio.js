@@ -2,10 +2,16 @@
 // https://codepen.io/jeremyagottfried/pen/bMqyNZ
 
 var storage = firebase.storage();
+var database = firebase.database();
+
 var storageRef = storage.ref();
-var roomRef = storageRef.child(document.getElementById('roomID').innerText);
+var roomID = document.getElementById('roomID').innerText;
+var roomRef = storageRef.child(roomID);
 
 var blob; 
+
+var testRec;
+
 
 function handlerFunction(stream) {
     rec = new MediaRecorder(stream);
@@ -48,9 +54,20 @@ stopRecord.onclick = e => {
     rec.stop();
 }
 
+function writeTempoInfo(bpm, beat) {
+    firebase.database().ref(roomID).set({
+      bpm: bpm,
+      beat: beat
+    });
+  }
+
 storeRecord.onclick = async e => {
 
     // check for valid name and recording is there
+
+
+    writeTempoInfo(document.getElementById("bpm-input").value, 
+                    document.getElementById("beat-input").value);
 
     var audioName = recordingName.value + ".mp3";
     console.log("audio name: " + audioName);
@@ -58,16 +75,6 @@ storeRecord.onclick = async e => {
     audioRef = roomRef.child(audioName)
 
     var uploadTask = audioRef.put(blob);
-
-    var metadata = {
-        customMetadata: {
-          'bpm': document.getElementById('bpm-input').value,
-          'beat': document.getElementById('beat-input').value
-        }
-    }
-
-    audioRef.updateMetadata(metadata)
-    .catch(function(error) {});
 
     uploadTask.on('state_changed', function(snapshot){
         // Observe state change events such as progress, pause, and resume
@@ -87,10 +94,10 @@ storeRecord.onclick = async e => {
     }, function() {
         uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             console.log('File available at', downloadURL);
+            
         });
         document.getElementById('audioStoringAlert').style.visibility = "visible";
     });
-
 
     
 }
@@ -105,7 +112,10 @@ playRecord.onclick = e => {
 window.onload = getAudioFiles();
 
 async function getAudioFiles() {
-    var listRef = storageRef.child(document.getElementById('roomID').innerText);
+
+    setMetronome();
+
+    var listRef = storageRef.child(roomID);
     var firstPage = await listRef.list({ maxResults: 100});
     var audioItems = firstPage.items;
 
@@ -127,5 +137,27 @@ async function getAudioFiles() {
         document.getElementById('audioRecordings').appendChild(myAudio);               
 
     }
+
+}
+
+
+async function setMetronome() {
+
+    var bpm;
+    var beat;
+
+    firebase.database().ref(roomID).once('value').then(function(snapshot) {
+        bpm = snapshot.val().bpm;
+        beat = snapshot.val().beat;
+
+        document.getElementById("bpm-input").value = bpm;
+        document.getElementById("beat-input").value = beat;
+    
+        document.getElementById("bpm-input").setAttribute('readonly', true);
+        document.getElementById("beat-input").setAttribute('readonly', true);
+        
+    });
+
+
 
 }
