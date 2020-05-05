@@ -1,4 +1,3 @@
-
 // https://codepen.io/jeremyagottfried/pen/bMqyNZ
 
 var storage = firebase.storage();
@@ -9,9 +8,6 @@ var roomID = document.getElementById('roomID').innerText;
 var roomRef = storageRef.child(roomID);
 
 var blob; 
-
-var testRec;
-
 
 function handlerFunction(stream) {
     rec = new MediaRecorder(stream);
@@ -64,7 +60,6 @@ function writeTempoInfo(bpm, beat) {
 storeRecord.onclick = async e => {
 
     // check for valid name and recording is there
-
 
     writeTempoInfo(document.getElementById("bpm-input").value, 
                     document.getElementById("beat-input").value);
@@ -119,14 +114,18 @@ async function getAudioFiles() {
     var firstPage = await listRef.list({ maxResults: 100});
     var audioItems = firstPage.items;
 
-
     for (let i = 0; i < audioItems.length; i++) {
+
+        var audioObject = document.createElement("div");
+        audioObject.className = "audioObject";
+        audioObject.id = audioItems[i].location.path.split('/').pop();
+        
         var audioLabel = audioItems[i].location.path.split('/').pop().split('.')[0];
 
         var audioName = document.createElement("P");
-        audioName.id = audioName + "Name";
+        audioName.id = audioLabel + "Name";
         audioName.innerText = audioLabel;
-        document.getElementById('audioRecordings').appendChild(audioName);
+        audioObject.appendChild(audioName);
 
         var myAudio = document.createElement("audio");
         myAudio.id = audioLabel;
@@ -134,12 +133,19 @@ async function getAudioFiles() {
         myAudio.src = await audioItems[i].getDownloadURL();
         myAudio.controls = true;
         myAudio.autoplay = false;
-        document.getElementById('audioRecordings').appendChild(myAudio);               
+
+        audioObject.appendChild(myAudio);
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        audioObject.appendChild(span);
+        
+        document.getElementById('audioRecordings').appendChild(audioObject);
 
     }
-
 }
-
 
 async function setMetronome() {
 
@@ -157,7 +163,23 @@ async function setMetronome() {
         document.getElementById("beat-input").setAttribute('readonly', true);
         
     });
-
-
-
 }
+
+
+
+$(document).on('click', '.close', function(event) {
+    console.log(event);
+    console.log("title clicked");
+
+    var audioObject = event.currentTarget.parentElement;
+    var audioObjectRef = audioObject.id;
+
+    var deleteAudioRef = roomRef.child(audioObjectRef);
+
+    deleteAudioRef.delete().then(function() {}).catch(function(error) {
+        console.log("file not found");
+    });
+
+    audioObject.parentNode.removeChild(audioObject);
+
+});
