@@ -67,29 +67,29 @@ function playNote(t) {
     });
 }
 
-// function countDown() {
-//   var t = $(".timer");
+function countDown() {
+  var t = $(".timer");
 
-//   if( parseInt(t.val(), 10) > 0 && counting === true)
-//   {
-//       t.val( parseInt(t.val(), 10) - 1 );
-//       window.setTimeout(countDown, 1000);
-//   }
-//   else
-//   {
-//     $(".play-btn").click();
-//     t.val(60);
-//   }
-// }
+  if( parseInt(t.val(), 10) > 0 && counting === true)
+  {
+      t.val( parseInt(t.val(), 10) - 1 );
+      window.setTimeout(countDown, 1000);
+  }
+  else
+  {
+    $(".play-btn").click();
+    t.val(60);
+  }
+}
 
-// /* Tap tempo */
-// $(".tap-btn").click(function() {
-//   var d = new Date();
-//   var temp = parseInt(d.getTime(), 10);
+/* Tap tempo */
+$(".tap-btn").click(function() {
+  var d = new Date();
+  var temp = parseInt(d.getTime(), 10);
 
-//   $(".bpm-input").val( Math.ceil(60000 / (temp - delta)) );
-//   delta = temp;
-// });
+  $(".bpm-input").val( Math.ceil(60000 / (temp - delta)) );
+  delta = temp;
+});
 
 /* Add or subtract bpm */
 $(".bpm-minus, .bpm-plus").click(function() {
