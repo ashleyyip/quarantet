@@ -11,8 +11,16 @@ img {
 
 .flex-container {
     display: flex;
-    align-items: stretch;
+    align-items: center;
+
 }
+
+.audioObject {
+    display: flex;
+    align-items: center;  
+}
+
+
 
 .container {
     padding-left: 30px;
