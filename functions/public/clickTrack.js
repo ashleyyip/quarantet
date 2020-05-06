@@ -1,3 +1,4 @@
+// https://codepen.io/ganderzz/pen/Ezlfu
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 var context = new AudioContext();
@@ -6,12 +7,9 @@ var delta = 0;
 var curTime = 0.0;
 var countdown = 3;
 
-
-
 // Load up dots on pageload
 $("document").ready(function() {
     $(".ts-top").trigger("change");
-    $("header").fitText(1, { maxFontSize: "46px" });
 });
 
 
