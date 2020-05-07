@@ -19,60 +19,67 @@
         </div>
        
         <br>
+
+        <div class="box-container">
+            <div class="ny shadow-box">
+                <h3>Click Track</h3>
+                <div class="counter"></div>
+                <i class="fa fa-cog options-btn"></i>
     
-        <section class="metronome-container">
-        <div class="counter"></div>
-        
-        <i class="fa fa-cog options-btn"></i>
+                <div class="controls">
+                    <label>BPM: 
+                        <span>
+                            <i class="fa fa-minus bpm-minus"></i>
+                            <input type="text" value="60" class="bpm-input" id="bpm-input" />
+                            <i class="fa fa-plus bpm-plus"></i>
+                        </span>
+                    </label>
+                    <label>
+                        Beat: <input type="text" value="4" class="ts-top" id="beat-input" />
+                    </label>
+            
+                    <button class="play-btn">Play</button>
+                </div>
+            </div>
     
-        <div class="controls">
-            <label>BPM: 
-                <span>
-                    <i class="fa fa-minus bpm-minus"></i>
-                    <input type="text" value="60" class="bpm-input" id="bpm-input" />
-                    <i class="fa fa-plus bpm-plus"></i>
-                </span>
-            </label>
-            <label>
-                Beat: <input type="text" value="4" class="ts-top" id="beat-input" />
-            </label>
+            <div class="ny shadow-box">
     
-            <button class="play-btn">Play</button>
+                <h3>Record</h3>
+                <p id="countdownAlert" ></p>
+
+                <p>
+                    <button id=record>Record</button>
+                    <button id=stopRecord disabled>Stop</button>
+                </p><br>
+                <p>
+                    <audio id=recordedAudio></audio>
+                </p><br>
+                
+                <p id="partname">Part name:</p>
+                <input type="text" id="recordingName" name="recordingName"><br>
+
+
+                <div class="flex-container">
+                    <p>
+                        <button id=storeRecord>Store Recording</button>
+                    </p>
+                    <p id="audioStoringAlert" style="visibility:hidden;">Upload Complete!</p>
+                </div>
+            </div>
+
         </div>
-        <p id="countdownAlert" ></p>
 
-        <!-- style="visibility:hidden;" -->
+        <div class="divider"></div>
         
-        </section>
-
-        <h3>Record</h3>
-        <p>
-            <button id=record>Record</button>
-            <button id=stopRecord disabled>Stop</button>
-        </p><br>
-        <p>
-            <audio id=recordedAudio></audio>
-        </p>
-        <br>
-
-
-        <div class="flex-container">
-            <p id="partname">Part name:</p>
-            <input type="text" id="recordingName" name="recordingName">
-            <p>
-                <button id=storeRecord>Store Recording</button>
-            </p>
-            <p id="audioStoringAlert" style="visibility:hidden;">Upload Complete!</p>
-
-        
-        </div>
-
         <div id="audioRecordings">
             <h3>Current recordings:</h3> 
         </div><br>
         <p>
             <button id=playRecord>Play Recordings</button>
         </p>
+
+        <div class="divider"></div>
+
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -102,7 +109,7 @@
             firebase.analytics();
         </script>
 
-        <script src="clickTrack.js.js"></script>
+        <script src="script.js"></script>
         <script src="recordAudio.js"></script>
     </div>
 </body>

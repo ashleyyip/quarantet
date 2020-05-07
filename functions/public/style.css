@@ -18,9 +18,18 @@ img {
 .audioObject {
     display: flex;
     align-items: center;  
+    margin: 10px;
 }
 
+.audioObject p {
+    width: 200px;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
 
+.audioObject span {
+    padding-left: 10px;
+}
 
 .container {
     padding-left: 30px;
@@ -151,4 +160,54 @@ button {
 .counter .active {
     background: #2B2B52;
     /* lighten(#8E79FC, 10%); */
+}
+
+.shadow-box {
+    box-shadow: 0 32px 64px rgba(43,43,82,0.24);
+
+}
+.ny {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100%;
+    padding: 32px 24px;
+    padding-top: 52px;
+    background: #fff;
+    padding-bottom: 24px;
+    position: relative;
+    padding-top: 40px;
+    flex-basis: 400px;
+    max-width: 400px;
+    max-height: 400px;
+    box-sizing: content-box;
+    margin: 20px;
+}
+
+
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-right: -12px;
+    margin-left: -12px;
+    margin-top: -12px;
+}
+
+
+.divider {
+    content: '';
+    /* position: absolute; */
+    top: 0;
+    margin-top: 60px;
+    left: 0;
+    width: 100%;
+    display: block;
+    height: 1px;
+    background: #273C5A;
+    background: linear-gradient(to right, rgba(39,60,90,0.1) 0, rgba(39,60,90,0.6) 50%, rgba(39,60,90,0.1) 100%);
+}
+
+#audioStoringAlert {
+    margin: 10px;
 }
