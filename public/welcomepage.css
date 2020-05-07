@@ -48,13 +48,13 @@
     animation-delay: 1.5s;    
 }
 
-#pointOne {
+#pointOne, #pointTwo {
     -webkit-animation-delay: 1.8s;
     -moz-animation-delay: 1.8s;
     animation-delay: 1.8s;     
 }
 
-#pointTwo {
+#pointThree, #pointFour {
     -webkit-animation-delay: 2.1s;
     -moz-animation-delay: 2.1s;
     animation-delay: 2.1s;     
