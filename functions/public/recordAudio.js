@@ -99,9 +99,24 @@ storeRecord.onclick = async e => {
 
 playRecord.onclick = e => {
     var audiofiles = document.getElementsByClassName("audiofile");
+    var audioSources = [];
     for (let i = 0; i < audiofiles.length; i++) {
         audiofiles[i].play();
+        audioSources.push(audiofiles[i].src);
     }
+
+
+    var test = ['/vivaldi.mp3', '/haydn.mp3'];
+    // var test = ['https://firebasestorage.googleapis.com/v0/b/quarantet-66755.appspot.com/o/test1%2F1.mp3?alt=media&token=01146b7e-0cce-40d1-aecb-b6a4bf03f0d8', 'https://firebasestorage.googleapis.com/v0/b/quarantet-66755.appspot.com/o/test1%2F2.mp3?alt=media&token=733733d0-86d7-4617-9970-5dc424ab9f9d'];
+
+    var audio = new Crunker();
+    audio.fetchAudio(test)
+    .then(buffers => audio.mergeAudio(buffers))
+    .then(merged => audio.export(merged, "merged/mp3"))
+    .then(output => audio.download(output.blob))
+    .catch(error => {
+        throw new Error(error);
+    });
 }
 
 window.onload = getAudioFiles();
