@@ -162,24 +162,38 @@ async function setMetronome() {
         document.getElementById("bpm-input").setAttribute('readonly', true);
         document.getElementById("beat-input").setAttribute('readonly', true);
         
+    }).catch(function(error) {
+        console.log("no tempo info found");
     });
 }
 
 
-
 $(document).on('click', '.close', function(event) {
     console.log(event);
-    console.log("title clicked");
 
     var audioObject = event.currentTarget.parentElement;
     var audioObjectRef = audioObject.id;
 
     var deleteAudioRef = roomRef.child(audioObjectRef);
 
-    deleteAudioRef.delete().then(function() {}).catch(function(error) {
+    deleteAudioRef.delete().then(function() {
+        checkifEmpty();
+    }).catch(function(error) {
         console.log("file not found");
     });
 
     audioObject.parentNode.removeChild(audioObject);
 
+
 });
+
+async function checkifEmpty() {
+
+    var listRef = storageRef.child(roomID);
+    var firstPage = await listRef.list({ maxResults: 100});
+    var audioItems = firstPage.items;
+    if (audioItems.length == 0) {
+        firebase.database().ref(roomID).remove();
+    }
+
+}
