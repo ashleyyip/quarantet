@@ -7,11 +7,6 @@ var delta = 0;
 var curTime = 0.0;
 var countdown = 3;
 
-// Load up dots on pageload
-$("document").ready(function() {
-    $(".ts-top").trigger("change");
-});
-
 
 /*
 Scheduling Help by: https://www.html5rocks.com/en/tutorials/audio/scheduling/
@@ -97,13 +92,6 @@ $(".bpm-minus, .bpm-plus").click(function() {
         $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
 });
 
-// /* Change pitches for tones in options */
-// $(".beat-range, .accent-range").change(function() {
-//   if($(this).hasClass("beat-range"))
-//     offBeatPitch = $(this).val();
-//   else
-//      accentPitch = $(this).val();
-// });
 
 /* Activate dots for accents */
 $(document).on("click", ".counter .dot", function() {
