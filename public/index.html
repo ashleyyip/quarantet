@@ -11,8 +11,7 @@
     </h1>
 
 <div class="container">
-    <h2 data-reveal-delay="150" class="fade-in" id="title">Welcome to Quarantet</h2>
-  
+    <h2 class="fade-in" id="title">Welcome to Quarantet</h2>
 
     <div>
         <p  id="generateRoomLabel" class="fade-in">Enter a group name to get started. How about this one?</p>
@@ -26,7 +25,6 @@
             </button>
         </div>
     </div>
-
 
     <section class="appInfo fade-in" id="appInfo">
         <div class="divider"></div>
@@ -91,33 +89,12 @@
         </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="divider fade-in" id="bottom-divider"></div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+    <div class="footer fade-in">
+        Made with <span style="color: #6448FB">&hearts;</span> by <a href="https://github.com/ashleyyip">Ashley</a>
+    </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-storage.js"></script>
-
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/FitText.js/1.1/jquery.fittext.min.js"></script>
-
-
-    <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyC0v0bgTW5d_ERIyaZdeHFV-hdYYbzt6ic",
-        authDomain: "quarantet-66755.firebaseapp.com",
-        databaseURL: "https://quarantet-66755.firebaseio.com",
-        projectId: "quarantet-66755",
-        storageBucket: "quarantet-66755.appspot.com",
-        messagingSenderId: "725285366722",
-        appId: "1:725285366722:web:ec528985e6e4ea6dd2445b",
-        measurementId: "G-SRJ6D12NQ2"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    </script>
     <script src="roomNames.js"></script>
 
 </body>

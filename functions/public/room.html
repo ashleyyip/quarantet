@@ -16,33 +16,28 @@
         <div class="flex-container">
             <p>Room ID:</p>
             <p id="roomID"><%= title %></p>
-        </div>
-       
-        <br>
+        </div><br>
 
         <div class="box-container">
-            <div class="ny shadow-box">
+            <div class="box shadow-box">
                 <h3>Click Track</h3>
                 <div class="counter"></div>
-                <i class="fa fa-cog options-btn"></i>
     
                 <div class="controls">
                     <label>BPM: 
                         <span>
-                            <i class="fa fa-minus bpm-minus"></i>
                             <input type="text" value="60" class="bpm-input" id="bpm-input" />
-                            <i class="fa fa-plus bpm-plus"></i>
                         </span>
                     </label>
                     <label>
-                        Beat: <input type="text" value="4" class="ts-top" id="beat-input" />
+                        Beat: <input type="text" value="4" class="counter-dots" id="beat-input" />
                     </label>
             
                     <button class="play-btn">Play</button>
                 </div>
             </div>
     
-            <div class="ny shadow-box">
+            <div class="box shadow-box">
     
                 <h3>Record</h3>
                 <p id="countdownAlert" ></p>
@@ -79,6 +74,10 @@
         </p>
 
         <div class="divider"></div>
+
+        <div class="footer">
+            Made with <span style="color: #6448FB">&hearts;</span> by <a href="https://github.com/ashleyyip">Ashley</a>
+        </div>
 
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->

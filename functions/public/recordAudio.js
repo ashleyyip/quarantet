@@ -162,13 +162,13 @@ async function setMetronome() {
         document.getElementById("bpm-input").setAttribute('readonly', true);
         document.getElementById("beat-input").setAttribute('readonly', true);
 
-        $(".ts-top").trigger("change");
-
+        $(".counter-dots").trigger("change");
         
     }).catch(function(error) {
         console.log("no tempo info found");
-    });
+        $(".counter-dots").trigger("change");
 
+    });
 }
 
 

@@ -28,7 +28,7 @@ function updateTime() {
 function playNote(t) {
     var note = context.createOscillator();
 
-    if(noteCount == parseInt($(".ts-top").val(), 10) ) {
+    if(noteCount == parseInt($(".counter-dots").val(), 10) ) {
         noteCount = 0;
     }
       
@@ -84,13 +84,13 @@ $(".tap-btn").click(function() {
   delta = temp;
 });
 
-/* Add or subtract bpm */
-$(".bpm-minus, .bpm-plus").click(function() {
-    if($(this).hasClass("bpm-minus"))
-        $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
-    else
-        $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
-});
+// /* Add or subtract bpm */
+// $(".bpm-minus, .bpm-plus").click(function() {
+//     if($(this).hasClass("bpm-minus"))
+//         $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) - 1 );
+//     else
+//         $(".bpm-input").val(parseInt($(".bpm-input").val(), 10) + 1 );
+// });
 
 
 /* Activate dots for accents */
@@ -103,11 +103,11 @@ $(".options-btn").click(function() {
 });
 
 /* Add dots when time signature is changed */
-$(".ts-top, .ts-bottom").on("change", function() {
+$(".counter-dots").on("change", function() {
     var _counter = $(".counter");
     _counter.html("");
 
-    for(var i = 0; i < parseInt($(".ts-top").val(), 10); i++) {
+    for(var i = 0; i < parseInt($(".counter-dots").val(), 10); i++) {
         var temp = document.createElement("div");
         temp.className = "dot";
 
@@ -134,7 +134,7 @@ $(".play-btn").click(function() {
 function playMetronome() {
     countdown = 3;
     curTime = context.currentTime;
-    noteCount = parseInt($(".ts-top").val(), 10);
+    noteCount = parseInt($(".counter-dots").val(), 10);
     schedule();
 
     $(".play-btn").data("what", "pause").css({

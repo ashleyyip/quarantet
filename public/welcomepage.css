@@ -60,6 +60,12 @@
     animation-delay: 2.1s;     
 }
 
+#bottom-divider {
+    -webkit-animation-delay: 2.4s;
+    -moz-animation-delay: 2.4s;
+    animation-delay: 2.4s;      
+}
+
 img {
   display: block;
   height: auto;
@@ -290,4 +296,19 @@ section {
     cursor: default;
 }
 
+.footer {
+    font-size: 14px;
+    line-height: 22px;
+    color: #95A1BC;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    -webkit-animation-delay: 2.4s;
+    -moz-animation-delay: 2.4s;
+    animation-delay: 2.4s;
+}
+
+a {
+    color: #95A1BC;
+}
 

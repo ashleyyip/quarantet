@@ -50,7 +50,7 @@ img {
   padding-top: 30px;
 }
 
-.bpm-input, .ts-top {
+.bpm-input, .counter-dots {
     width: 70px;
     text-align: center;
 }
@@ -166,7 +166,8 @@ button {
     box-shadow: 0 32px 64px rgba(43,43,82,0.24);
 
 }
-.ny {
+
+.box {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -210,4 +211,16 @@ button {
 
 #audioStoringAlert {
     margin: 10px;
+}
+
+.footer {
+    font-size: 14px;
+    line-height: 22px;
+    color: #95A1BC;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #95A1BC;
 }
