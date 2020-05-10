@@ -213,6 +213,10 @@ button {
     margin: 10px;
 }
 
+#footer-divider {
+    margin-top: 20px;
+}
+
 .footer {
     font-size: 14px;
     line-height: 22px;
