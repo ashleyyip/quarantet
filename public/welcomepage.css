@@ -80,8 +80,6 @@ img {
     padding-left: 30px;
 }
 
-
-
 input {
     opacity: 0;
     height: 46px;
@@ -91,18 +89,7 @@ input {
     border: 1px solid #ddd;
     letter-spacing: .05em;
     box-sizing: border-box;
-
 }
-
-/* .newRoom {
-  height: 62px;
-  width: 120px;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  font-size: 1em;
-  vertical-align: top;
-  cursor: pointer;
-} */
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -110,18 +97,12 @@ body {
     font-size: 1rem;
     font-family: "Heebo", sans-serif;
     font-weight: 400;
-
 }
 
 p {
     font-weight: 400;
     letter-spacing: -0.1px;
     margin: 0px;
-}
-
-#partname {
-    line-height: 46px;
-    padding-right: 10px;
 }
 
 h2 {
@@ -140,12 +121,10 @@ h2 {
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     display: block;
-
 }
 
 .divider {
     content: '';
-    /* position: absolute; */
     top: 0;
     margin-top: 60px;
     left: 0;
@@ -179,15 +158,16 @@ button {
     white-space: nowrap;
     transition: background .15s ease;
     box-sizing: inherit;
-
 }
 
-.s_ {
+.appInfo {
     text-align: center;
 }
+
 section {
     display: block;
 }
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -200,20 +180,14 @@ section {
     margin: 0 auto;
 }
 
-.rd {
+.features-tiles-inner {
     position: relative;
     padding-top: 48px;
     padding-bottom: 48px;
 }
 
-.rv {
+.section-head {
     padding-bottom: 48px;
-}
-
-
-
-.ok {
-    margin-bottom: 16px;
 }
 
 .section-header {
@@ -224,7 +198,6 @@ section {
     font-family:"IBM Plex Sans", sans-serif;
     font-size:38px;
     font-weight:600;
-    height:47.2727px;
     letter-spacing:-0.1px;
     line-height:48px;
     margin-block-end:16px;
@@ -238,11 +211,6 @@ section {
     text-size-adjust:100%;
 }
 
-.oe {
-    margin-top: 0;
-
-}
-
 .point-header {
     font-size: 24px;
     line-height: 34px;
@@ -253,34 +221,24 @@ section {
     word-wrap: break-word;
     overflow-wrap: break-word;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
-h2, .s {
-    font-size: 32px;
-    line-height: 42px;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 600;
-    clear: both;
-    color: #2B2B52;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.sz {
+.section-body {
     margin: 0;
 }
 
-.rw .nm:last-of-type {
+.appInfo .tiles-row:last-of-type {
     margin-bottom: -16px;
 }
 
-.rw .nm {
+.appInfo .tiles-row {
     margin-right: -16px;
     margin-left: -16px;
     margin-top: -16px;
 }
 
-.nm {
+.tiles-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -289,40 +247,26 @@ h2, .s {
     margin-top: -12px;
 }
 
-.rw .tiles-item {
+.appInfo .tiles-item {
     flex-basis: 317px;
     max-width: 317px;
     padding: 16px;
 }
 
-.tiles-item {
-    flex-basis: 330px;
-    max-width: 330px;
-    box-sizing: content-box;
-    padding: 12px;
-}
-
-.rw .ny {
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.ny {
+.point {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     height: 100%;
-    padding: 32px 24px;
+    padding: 0;
 }
 
 .tiles-item * {
     box-sizing: border-box;
 }
 
-.iy {
-
+.icon-div {
+    margin-bottom: 16px;
     display: inline-flex;
     box-sizing: border-box;
     background-repeat: no-repeat;
@@ -343,6 +287,7 @@ h2, .s {
     border-style: none;
     text-align: center;
     padding: 0px;
+    cursor: default;
 }
 
 
