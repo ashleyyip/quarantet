@@ -57,8 +57,10 @@ function writeTempoInfo(bpm, beat) {
   }
 
 storeRecord.onclick = async e => {
-
-    // check for valid name and recording is there
+    if (recordingName.value == "") { // check for valid recording name
+        document.getElementById('audioStoringError').style.visibility = "visible";
+        return;
+    }
 
     writeTempoInfo(document.getElementById("bpm-input").value, 
                     document.getElementById("beat-input").value);
@@ -90,6 +92,7 @@ storeRecord.onclick = async e => {
             console.log('File available at', downloadURL);
             
         });
+        document.getElementById('audioStoringError').style.visibility = "hidden";
         document.getElementById('audioStoringAlert').style.visibility = "visible";
     });
 
