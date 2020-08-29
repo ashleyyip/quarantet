@@ -1,4 +1,3 @@
-// https://codepen.io/jeremyagottfried/pen/bMqyNZ
 
 var storage = firebase.storage();
 var database = firebase.database();
@@ -29,7 +28,7 @@ function handlerFunction(stream) {
 function sendData(data) {}
 
 record.onclick = async e => {
-    playMetronome();
+    playMetronome(true);
     await navigator.mediaDevices.getUserMedia({audio:true}).then(stream => {handlerFunction(stream)});
 
     console.log('Recording audio...');

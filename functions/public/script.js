@@ -11,12 +11,16 @@ var countdown = 3;
 /*
 Scheduling Help by: https://www.html5rocks.com/en/tutorials/audio/scheduling/
 */
-function schedule() {
+function schedule(isRecording) {
     while(curTime < context.currentTime + 0.1) {
-        playNote(curTime);
+        // console.log("curTime IR: " + isRecording);
+        playNote(curTime, isRecording);
         updateTime();
     }
-    timer = window.setTimeout(schedule, 0.1);
+    // timer = window.setTimeout(schedule, 0.1, isRecording); // function, timeout, param to function
+    timer = window.setTimeout(function() {
+        schedule(isRecording);
+    }, 0.1);
 }
 
 function updateTime() {
@@ -25,7 +29,7 @@ function updateTime() {
 }
 
 /* Play note on a delayed interval of t */
-function playNote(t) {
+function playNote(t, isRecording) {
     var note = context.createOscillator();
 
     if(noteCount == parseInt($(".counter-dots").val(), 10) ) {
@@ -35,13 +39,17 @@ function playNote(t) {
 
     if( $(".counter .dot").eq(noteCount).hasClass("active") ) {
         note.frequency.value = accentPitch;
-        if (countdown == 0) {
-            $("#countdownAlert").text("Begin!");
+        // console.log("playNote isRecording: " + isRecording);
+        if (isRecording) {
+            if (countdown == 0) {
+                $("#countdownAlert").text("Begin!");
+            }
+            else {
+                $("#countdownAlert").text(countdown);
+                countdown--;
+            }
         }
-        else {
-            $("#countdownAlert").text(countdown);
-            countdown--;
-        }
+
         
     }
     else {
@@ -127,15 +135,16 @@ $(".play-btn").click(function() {
 
     }
     else {
-      playMetronome()
+      playMetronome(false)
     }
 });
 
-function playMetronome() {
-    countdown = 3;
+function playMetronome(isRecording) {
+    // console.log("isRecording: " + isRecording);
+    countdown = 1;
     curTime = context.currentTime;
     noteCount = parseInt($(".counter-dots").val(), 10);
-    schedule();
+    schedule(isRecording);
 
     $(".play-btn").data("what", "pause").css({
         background: "#F75454",
